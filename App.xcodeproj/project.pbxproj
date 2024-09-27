@@ -19,7 +19,6 @@
 		047047822CA5625A0039443D /* DataFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047047812CA5625A0039443D /* DataFriend.swift */; };
 		047047842CA563EA0039443D /* DataUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047047832CA563EA0039443D /* DataUserViewModel.swift */; };
 		047047872CA565900039443D /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047047862CA565900039443D /* ApiClient.swift */; };
-		047047892CA58FB20039443D /* money.png in Resources */ = {isa = PBXBuildFile; fileRef = 047047882CA58FB20039443D /* money.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +57,6 @@
 		047047812CA5625A0039443D /* DataFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFriend.swift; sourceTree = "<group>"; };
 		047047832CA563EA0039443D /* DataUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUserViewModel.swift; sourceTree = "<group>"; };
 		047047862CA565900039443D /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
-		047047882CA58FB20039443D /* money.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = money.png; path = "../../../Downloads/drive-download-20240926T124649Z-001/money.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +107,6 @@
 		0470474B2CA557B80039443D /* App */ = {
 			isa = PBXGroup;
 			children = (
-				0470478A2CA58FBB0039443D /* Image */,
 				047047852CA5656D0039443D /* Network */,
 				0470477E2CA562320039443D /* ViewModel */,
 				0470477D2CA5622A0039443D /* Model */,
@@ -118,7 +115,6 @@
 				0470474E2CA557B80039443D /* SceneDelegate.swift */,
 				047047522CA557B80039443D /* Main.storyboard */,
 				047047552CA557BA0039443D /* Assets.xcassets */,
-				047047882CA58FB20039443D /* money.png */,
 				047047572CA557BA0039443D /* LaunchScreen.storyboard */,
 				0470475A2CA557BA0039443D /* Info.plist */,
 			);
@@ -174,13 +170,6 @@
 				047047862CA565900039443D /* ApiClient.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		0470478A2CA58FBB0039443D /* Image */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +275,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				047047892CA58FB20039443D /* money.png in Resources */,
 				047047592CA557BA0039443D /* LaunchScreen.storyboard in Resources */,
 				047047562CA557BA0039443D /* Assets.xcassets in Resources */,
 				047047542CA557B80039443D /* Main.storyboard in Resources */,
@@ -496,14 +484,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WHTT9622TD;
 				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = test.App;
+				PRODUCT_BUNDLE_IDENTIFIER = test.AppYoungJH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -514,14 +505,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WHTT9622TD;
 				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = test.App;
+				PRODUCT_BUNDLE_IDENTIFIER = test.AppYoungJH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
