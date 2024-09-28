@@ -366,15 +366,47 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-I3-2pt" userLabel="HaveFriendView">
                                 <rect key="frame" x="0.0" y="228" width="414" height="585"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFC-ic-b0f">
-                                        <rect key="frame" x="0.0" y="20" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFC-ic-b0f" userLabel="SearchBar">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="想轉一筆給誰呢？" translatesAutoresizingMaskIntoConstraints="NO" id="oOh-vs-9qE">
+                                                <rect key="frame" x="25" y="12.5" width="329" height="35"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="xu9-Ry-tPd"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="searchTextField.backgroundColor">
+                                                        <color key="value" name="steel12P"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="B9d-7r-Xa5" id="6be-e5-bSy"/>
+                                                </connections>
+                                            </searchBar>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icBtnAddFriends" translatesAutoresizingMaskIntoConstraints="NO" id="o8a-6A-l4S">
+                                                <rect key="frame" x="359" y="17.5" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="5gs-MZ-rTV"/>
+                                                    <constraint firstAttribute="height" constant="25" id="kO9-7O-qx2"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="oLD-tK-Fez"/>
+                                            <constraint firstAttribute="trailing" secondItem="oOh-vs-9qE" secondAttribute="trailing" constant="60" id="b1h-to-f63"/>
+                                            <constraint firstItem="oOh-vs-9qE" firstAttribute="centerY" secondItem="VFC-ic-b0f" secondAttribute="centerY" id="d54-Vu-6Jx"/>
+                                            <constraint firstAttribute="height" constant="60" id="oLD-tK-Fez"/>
+                                            <constraint firstAttribute="trailing" secondItem="o8a-6A-l4S" secondAttribute="trailing" constant="30" id="tm7-iH-aAb"/>
+                                            <constraint firstItem="oOh-vs-9qE" firstAttribute="leading" secondItem="VFC-ic-b0f" secondAttribute="leading" constant="25" id="uEz-vV-CRH"/>
+                                            <constraint firstItem="o8a-6A-l4S" firstAttribute="centerY" secondItem="VFC-ic-b0f" secondAttribute="centerY" id="y2r-IP-dA0"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lvc-Ey-4tV">
-                                        <rect key="frame" x="0.0" y="70" width="414" height="515"/>
+                                        <rect key="frame" x="0.0" y="60" width="414" height="525"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -414,7 +446,7 @@
                                     <constraint firstItem="lvc-Ey-4tV" firstAttribute="centerX" secondItem="M7g-I3-2pt" secondAttribute="centerX" id="Ahf-IY-qrj"/>
                                     <constraint firstAttribute="bottom" secondItem="lvc-Ey-4tV" secondAttribute="bottom" id="B4v-T8-kYj"/>
                                     <constraint firstItem="VFC-ic-b0f" firstAttribute="width" secondItem="M7g-I3-2pt" secondAttribute="width" id="GJo-c6-3l9"/>
-                                    <constraint firstItem="VFC-ic-b0f" firstAttribute="top" secondItem="M7g-I3-2pt" secondAttribute="top" constant="20" symbolic="YES" id="Ngg-Mh-LBE"/>
+                                    <constraint firstItem="VFC-ic-b0f" firstAttribute="top" secondItem="M7g-I3-2pt" secondAttribute="top" id="Ngg-Mh-LBE"/>
                                     <constraint firstItem="lvc-Ey-4tV" firstAttribute="width" secondItem="M7g-I3-2pt" secondAttribute="width" id="Oyv-v9-BSD"/>
                                 </constraints>
                             </view>
@@ -429,6 +461,11 @@
                                     <constraint firstAttribute="height" constant="1" id="2Z8-kj-Ccv"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DY6-9p-Jvr">
+                                <rect key="frame" x="0.0" y="-17.5" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.51072847682119216" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1KG-L6-6km"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -438,10 +475,13 @@
                             <constraint firstItem="POJ-Xy-cv4" firstAttribute="leading" secondItem="1KG-L6-6km" secondAttribute="leading" id="9qz-bA-CQC"/>
                             <constraint firstItem="Yh6-7N-Fwp" firstAttribute="top" secondItem="POJ-Xy-cv4" secondAttribute="bottom" id="CrG-1o-DdS"/>
                             <constraint firstItem="1KG-L6-6km" firstAttribute="bottom" secondItem="44E-eO-hgk" secondAttribute="bottom" constant="1" id="Hwb-yW-eXO"/>
+                            <constraint firstItem="DY6-9p-Jvr" firstAttribute="centerY" secondItem="1KG-L6-6km" secondAttribute="centerY" id="Jtz-Yx-9nx"/>
                             <constraint firstItem="Ygy-Ek-Sjb" firstAttribute="centerX" secondItem="Yh6-7N-Fwp" secondAttribute="centerX" id="NKA-4v-GrP"/>
                             <constraint firstItem="Ygy-Ek-Sjb" firstAttribute="width" secondItem="Yh6-7N-Fwp" secondAttribute="width" id="NRa-s7-VYk"/>
+                            <constraint firstItem="DY6-9p-Jvr" firstAttribute="height" secondItem="JcT-cc-XSP" secondAttribute="height" id="PPi-nQ-jj6"/>
                             <constraint firstItem="NfF-8m-xwl" firstAttribute="centerX" secondItem="Ygy-Ek-Sjb" secondAttribute="centerX" id="Pkf-P0-vb2"/>
                             <constraint firstItem="DOY-yn-DwN" firstAttribute="centerX" secondItem="1KG-L6-6km" secondAttribute="centerX" id="REi-qr-dbJ"/>
+                            <constraint firstItem="DY6-9p-Jvr" firstAttribute="centerX" secondItem="1KG-L6-6km" secondAttribute="centerX" id="SPZ-xU-xnB"/>
                             <constraint firstItem="NFW-xi-K9j" firstAttribute="width" secondItem="JcT-cc-XSP" secondAttribute="width" id="TIj-mj-lG7"/>
                             <constraint firstItem="44E-eO-hgk" firstAttribute="centerX" secondItem="1KG-L6-6km" secondAttribute="centerX" id="VDV-lx-Nal"/>
                             <constraint firstItem="NFW-xi-K9j" firstAttribute="top" secondItem="NfF-8m-xwl" secondAttribute="bottom" id="Vb8-dA-twf"/>
@@ -460,18 +500,21 @@
                             <constraint firstItem="NFW-xi-K9j" firstAttribute="centerX" secondItem="1KG-L6-6km" secondAttribute="centerX" id="tNh-xw-djo"/>
                             <constraint firstItem="1KG-L6-6km" firstAttribute="bottom" secondItem="DOY-yn-DwN" secondAttribute="bottom" id="tb4-3u-x1H"/>
                             <constraint firstItem="Yh6-7N-Fwp" firstAttribute="centerX" secondItem="POJ-Xy-cv4" secondAttribute="centerX" id="uGc-Nq-EsV"/>
+                            <constraint firstItem="DY6-9p-Jvr" firstAttribute="width" secondItem="JcT-cc-XSP" secondAttribute="width" id="wvw-L1-qvi"/>
                             <constraint firstItem="NfF-8m-xwl" firstAttribute="width" secondItem="Ygy-Ek-Sjb" secondAttribute="width" id="z38-bB-XoO"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icTabbarFriendsOn" id="Egf-EP-WAe"/>
                     <connections>
                         <outlet property="FriendTableView" destination="lvc-Ey-4tV" id="nGD-Am-ouf"/>
+                        <outlet property="activityIndicator" destination="DY6-9p-Jvr" id="e8k-rC-Wh8"/>
                         <outlet property="chatUnderLineView" destination="Qax-fb-ota" id="ld8-13-LSZ"/>
                         <outlet property="chatView" destination="NFW-xi-K9j" id="AbW-Ug-qxi"/>
                         <outlet property="friendUnderLineView" destination="qTI-L4-fEn" id="Dq7-jY-sl8"/>
                         <outlet property="haveFriendView" destination="M7g-I3-2pt" id="RQL-lh-aSn"/>
                         <outlet property="kokoid" destination="2Nu-sV-7Fr" id="ddY-6K-W0X"/>
                         <outlet property="noFriendView" destination="DOY-yn-DwN" id="8XH-3t-Ih5"/>
+                        <outlet property="searchBar" destination="oOh-vs-9qE" id="sDH-QY-9bV"/>
                         <outlet property="userName" destination="NpC-Rc-z0C" id="wHn-6Y-Z1C"/>
                     </connections>
                 </viewController>
@@ -573,6 +616,7 @@
     </scenes>
     <resources>
         <image name="icAddFriendWhite" width="24" height="24"/>
+        <image name="icBtnAddFriends" width="25" height="25"/>
         <image name="icInfoBackDeepGray" width="18" height="18"/>
         <image name="icNavPinkScan" width="24" height="24"/>
         <image name="icNavPinkTransfer" width="24" height="24"/>
@@ -595,6 +639,9 @@
         </namedColor>
         <namedColor name="steel">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="steel12P">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

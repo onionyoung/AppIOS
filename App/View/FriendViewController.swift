@@ -7,9 +7,13 @@
 
 import UIKit
 
-class FriendViewController: UIViewController {
+class FriendViewController: UIViewController, UISearchBarDelegate {
 
+    //loading
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var FriendTableView: UITableView!
+    var refreshControl = UIRefreshControl()
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var kokoid: UILabel!
     @IBOutlet weak var chatView: UIView!
@@ -29,6 +33,8 @@ class FriendViewController: UIViewController {
 
     //初始畫面->無朋友狀態->檢查有無朋友
     func initViewModel(){
+        
+        
         //聊天按鈕
         chatUnderLineView.isHidden = true
         chatView.isHidden = true
@@ -48,12 +54,16 @@ class FriendViewController: UIViewController {
         dataUserViewModel.getData()
         
         //Get Friend Data
+        refreshControl.attributedTitle = NSAttributedString(string: "更新")
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        refreshControl.tintColor = .black
+        FriendTableView.addSubview(refreshControl)
         FriendTableView.delegate = self
         FriendTableView.dataSource = self
         FriendTableView.register(UINib(nibName: "TableViewCellFriend", bundle: nil), forCellReuseIdentifier: "TableViewCellFriend")
         dataFriendViewModel.reloadTableView = {
             DispatchQueue.main.async {
-                if(self.dataFriendViewModel.numberOfCells > 0){
+                if(self.dataFriendViewModel.datas.count > 0){
                     self.friendViewReload()
                     self.FriendTableView.reloadData()
                 }
@@ -66,12 +76,13 @@ class FriendViewController: UIViewController {
         }
         dataFriendViewModel.showLoading = {
             DispatchQueue.main.async {
-                
+                self.activityIndicator.startAnimating()
             }
         }
         dataFriendViewModel.hideLoading = {
             DispatchQueue.main.async {
-                
+                sleep(2)
+                self.activityIndicator.stopAnimating()
             }
         }
         dataFriendViewModel.getData()
@@ -85,6 +96,8 @@ class FriendViewController: UIViewController {
         //朋友介面顯示
         friendUnderLineView.isHidden = false
         friendViewReload()
+        
+        
     }
     
     //聊天是按鈕事件
@@ -98,16 +111,48 @@ class FriendViewController: UIViewController {
         friendUnderLineView.isHidden = true
         noFriendView.isHidden = true
     }
-    
+    //有無朋友介面互換
     func friendViewReload(){
-        if(self.dataFriendViewModel.numberOfCells > 0){
+        if(self.dataFriendViewModel.datas.count > 0){
             haveFriendView.isHidden = false
             noFriendView.isHidden = true
+            
+            //talbeview
+            FriendTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y:0, width: 0, height:CGFloat.leastNonzeroMagnitude))
+            //searchbar ui setting
+            searchBar.delegate = self
+            let steel = UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1)
+            let searchField = searchBar.value(forKey: "searchField") as? UITextField
+            searchField?.textColor = steel
+            searchField?.attributedPlaceholder = NSAttributedString(string: "想轉一筆給誰呢？", attributes: [NSAttributedString.Key.foregroundColor : steel])
+            searchField?.leftView?.tintColor = steel
+            let clearButton = searchField?.value(forKey: "_clearButton") as? UIButton
+            clearButton?.tintColor = steel
         } else {
             haveFriendView.isHidden = true
             noFriendView.isHidden = false
         }
     }
+    //friend tableview 下拉更新
+    @objc func refreshTableView(){
+        //init searchbar
+        searchBar.text = ""
+        self.searchBar.endEditing(true)
+        //getdata and refresh
+        dataFriendViewModel.getData()
+        refreshControl.endRefreshing()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        if searchText.isEmpty{
+            dataFriendViewModel.searchData(keyword: "")
+        }
+        
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        dataFriendViewModel.searchData(keyword:searchBar.text ?? "")
+        self.searchBar.endEditing(true)
+    }
+    
     
     @IBAction func menuFriendClick(_ sender: Any) {
         menuFriendClickEvent()

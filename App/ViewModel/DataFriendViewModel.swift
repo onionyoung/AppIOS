@@ -9,15 +9,25 @@ import UIKit
 
 class DataFriendViewModel{
     var datas: [DataFriend] = [DataFriend]()
+    var searchData: [DataFriend] = [DataFriend]()
     var confirmDatas: [DataFriend] = [DataFriend]()
     var reloadTableView: (() ->())?
     var showError: (() -> ())?
     var showLoading: (() -> ())?
     var hideLoading: (() -> ())?
     
+    //從API取得資料
     func getData(){
+        
         let url = URL(string:"https://dimanyen.github.io/friend1.json")
+        
+        showLoading?()
+        datas = [DataFriend]()
+        searchData = [DataFriend]()
+        confirmDatas = [DataFriend]()
+        
         ApiClient.getDataFromServer(url: url!){ (success, data) in
+            self.hideLoading?()
             if success{
                 do{
                     let object = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
@@ -71,7 +81,8 @@ class DataFriendViewModel{
                             self.datas.append(item)
                         }
                     }
-                    self.reloadTableView?()
+                    self.searchData(keyword:"")
+                    
                 }
                 catch{
                 }
@@ -82,12 +93,26 @@ class DataFriendViewModel{
         }
     }
 
+    func searchData(keyword:String){
+        searchData = [DataFriend]()
+        if(keyword.isEmpty){
+            searchData = datas
+        } else {
+            for item in datas{
+                if(item.name.contains(keyword)){
+                    searchData.append(item)
+                }
+            }
+        }
+        self.reloadTableView?()
+    }
+    
     var numberOfCells: Int{
-        return datas.count
+        return searchData.count
     }
     
     func getCellViewModel(at indexPath: IndexPath)-> DataFriend{
-        return datas[indexPath.row]
+        return searchData[indexPath.row]
     }
     
     

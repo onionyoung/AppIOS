@@ -13,6 +13,7 @@ public struct ApiClient {
         request.httpMethod = "Get"
         request.setValue("text/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         let task = URLSession.shared.dataTask(with: request){data, response, error in
+            
             if let error = error{
                 //handle the error
                 print(error)
