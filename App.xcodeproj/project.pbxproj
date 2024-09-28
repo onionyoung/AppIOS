@@ -19,6 +19,10 @@
 		047047822CA5625A0039443D /* DataFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047047812CA5625A0039443D /* DataFriend.swift */; };
 		047047842CA563EA0039443D /* DataUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047047832CA563EA0039443D /* DataUserViewModel.swift */; };
 		047047872CA565900039443D /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047047862CA565900039443D /* ApiClient.swift */; };
+		8176957C2CA7CFB9001F9071 /* DataFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8176957B2CA7CFA8001F9071 /* DataFriendViewModel.swift */; };
+		817695872CA7DDDE001F9071 /* TableViewCellFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817695852CA7DDDE001F9071 /* TableViewCellFriend.swift */; };
+		817695882CA7DDDE001F9071 /* TableViewCellFriend.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817695862CA7DDDE001F9071 /* TableViewCellFriend.xib */; };
+		8181FC4A2CA6E2A30086E2E6 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181FC492CA6E2980086E2E6 /* FriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		047047812CA5625A0039443D /* DataFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFriend.swift; sourceTree = "<group>"; };
 		047047832CA563EA0039443D /* DataUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUserViewModel.swift; sourceTree = "<group>"; };
 		047047862CA565900039443D /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		8176957B2CA7CFA8001F9071 /* DataFriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFriendViewModel.swift; sourceTree = "<group>"; };
+		817695852CA7DDDE001F9071 /* TableViewCellFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellFriend.swift; sourceTree = "<group>"; };
+		817695862CA7DDDE001F9071 /* TableViewCellFriend.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellFriend.xib; sourceTree = "<group>"; };
+		8181FC492CA6E2980086E2E6 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +150,10 @@
 		0470477C2CA562220039443D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8181FC492CA6E2980086E2E6 /* FriendViewController.swift */,
 				047047502CA557B80039443D /* ViewController.swift */,
+				817695852CA7DDDE001F9071 /* TableViewCellFriend.swift */,
+				817695862CA7DDDE001F9071 /* TableViewCellFriend.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,6 +170,7 @@
 		0470477E2CA562320039443D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8176957B2CA7CFA8001F9071 /* DataFriendViewModel.swift */,
 				047047832CA563EA0039443D /* DataUserViewModel.swift */,
 			);
 			path = ViewModel;
@@ -278,6 +290,7 @@
 				047047592CA557BA0039443D /* LaunchScreen.storyboard in Resources */,
 				047047562CA557BA0039443D /* Assets.xcassets in Resources */,
 				047047542CA557B80039443D /* Main.storyboard in Resources */,
+				817695882CA7DDDE001F9071 /* TableViewCellFriend.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,10 +318,13 @@
 				047047872CA565900039443D /* ApiClient.swift in Sources */,
 				047047512CA557B80039443D /* ViewController.swift in Sources */,
 				0470474D2CA557B80039443D /* AppDelegate.swift in Sources */,
+				8176957C2CA7CFB9001F9071 /* DataFriendViewModel.swift in Sources */,
 				047047802CA562500039443D /* DataUser.swift in Sources */,
+				8181FC4A2CA6E2A30086E2E6 /* FriendViewController.swift in Sources */,
 				0470474F2CA557B80039443D /* SceneDelegate.swift in Sources */,
 				047047822CA5625A0039443D /* DataFriend.swift in Sources */,
 				047047842CA563EA0039443D /* DataUserViewModel.swift in Sources */,
+				817695872CA7DDDE001F9071 /* TableViewCellFriend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

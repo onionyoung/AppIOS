@@ -18,13 +18,6 @@ public struct ApiClient {
                 print(error)
             } else if let data = data, let response = response as? HTTPURLResponse{
                 if response.statusCode == 200{
-                    /*do{
-                        let object = try JSONSerialization.jsonObject(with: data) as? NSDictionary
-                        print(object?["response"])
-                        
-                    }
-                    catch{
-                    }*/
                     complete(true, data)
                     //parse the data
                 } else{
