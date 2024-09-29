@@ -13,13 +13,12 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var topViewWidth: NSLayoutConstraint!
     @IBOutlet weak var bottomViewWidth: NSLayoutConstraint!
     @IBOutlet weak var inviteViewHeight: NSLayoutConstraint!
-    
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var topViewName: UILabel!
     @IBOutlet weak var bottomViewName: UILabel!
-    
     var isExpanded = false
+    
     //loading
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -30,23 +29,28 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var chatView: UIView!
     @IBOutlet weak var noFriendView: UIView!
     @IBOutlet weak var haveFriendView: UIView!
+    
+    @IBOutlet weak var haveFriendViewTopConstraint: NSLayoutConstraint!
+    var tempHaveFriendViewTopConstraint: NSLayoutConstraint? = nil
+    var ishaveFriendViewExpand = false
+    
+    @IBOutlet weak var menuChatView: UIView!
+    @IBOutlet weak var menuFriendView: UIView!
     @IBOutlet weak var friendUnderLineView: UIView!
     @IBOutlet weak var chatUnderLineView: UIView!
     var myMode:Int = 0
     
     var dataUserViewModel = DataUserViewModel()
     var dataFriendViewModel = DataFriendViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //初始畫面
         initViewModel()
-        
     }
 
     //初始畫面->無朋友狀態->檢查有無朋友
     func initViewModel(){
-        
-        
         //聊天按鈕
         chatUnderLineView.isHidden = true
         chatView.isHidden = true
@@ -105,6 +109,13 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
         }
         myMode = ((self.parent) as? MainController)?.myMode ?? 0
         dataFriendViewModel.getData(myMode:myMode)
+        
+        //menu右上角的數字
+        let badgeFriend = BadgeUIView();
+        badgeFriend.setBadgeView(num: 3, parentView: menuFriendView)
+        
+        let badgeChat = BadgeUIView();
+        badgeChat.setBadgeView(num: 200, parentView: menuChatView)
     }
     //朋友按鈕事件
     func menuFriendClickEvent(){
@@ -115,8 +126,6 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
         //朋友介面顯示
         friendUnderLineView.isHidden = false
         friendViewReload()
-        
-        
     }
     
     //聊天是按鈕事件
@@ -140,6 +149,7 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
             FriendTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y:0, width: 0, height:CGFloat.leastNonzeroMagnitude))
             //searchbar ui setting
             searchBar.delegate = self
+            
             let steel = UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1)
             let searchField = searchBar.value(forKey: "searchField") as? UITextField
             searchField?.textColor = steel
@@ -154,8 +164,6 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
     }
     //friend tableview 下拉更新
     @objc func refreshTableView(){
-        if (myMode == 2){myMode = 3}
-        else if(myMode == 3){myMode = 2}
         //init searchbar
         searchBar.text = ""
         self.searchBar.endEditing(true)
@@ -166,11 +174,19 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         if searchText.isEmpty{
             dataFriendViewModel.searchData(keyword: "")
+            self.searchBar.endEditing(true)
         }
-        
     }
+    
+    //鍵盤打開
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        haveFriendViewAnimate()
+    }
+    
+    //按下search按鈕
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         dataFriendViewModel.searchData(keyword:searchBar.text ?? "")
+        haveFriendViewAnimate()
         self.searchBar.endEditing(true)
     }
     
@@ -193,7 +209,7 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
     }
     //邀請清單展開縮放動畫
     func inviteViewExpandEvent(){
-        var count = dataFriendViewModel.numberOfInviteCells
+        let count = dataFriendViewModel.numberOfInviteCells
         if(count < 2){ return }
         UIView.animate(withDuration: 0.5){
             if self.isExpanded{
@@ -226,6 +242,26 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
             bottomView.isHidden = false
             topView.isHidden = false
         }
+    }
+    //點擊搜尋bar時 往上推
+    func haveFriendViewAnimate(){
+        if(!ishaveFriendViewExpand){
+            tempHaveFriendViewTopConstraint = haveFriendViewTopConstraint
+            haveFriendViewTopConstraint.isActive = false
+            haveFriendViewTopConstraint = haveFriendView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            haveFriendViewTopConstraint.isActive = true
+            ishaveFriendViewExpand = true
+        }else{
+            haveFriendViewTopConstraint.isActive = false
+            haveFriendViewTopConstraint = tempHaveFriendViewTopConstraint
+            haveFriendViewTopConstraint.isActive = true
+            ishaveFriendViewExpand = false
+        }
+        //更新
+        UIView.animate(withDuration: 0.3){
+            self.view.layoutIfNeeded()
+        }
+        
     }
 }
 extension FriendViewController: UITableViewDataSource, UITableViewDelegate{

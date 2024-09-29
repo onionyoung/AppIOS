@@ -825,8 +825,11 @@
                         <outlet property="chatView" destination="NFW-xi-K9j" id="AbW-Ug-qxi"/>
                         <outlet property="friendUnderLineView" destination="qTI-L4-fEn" id="Dq7-jY-sl8"/>
                         <outlet property="haveFriendView" destination="M7g-I3-2pt" id="RQL-lh-aSn"/>
+                        <outlet property="haveFriendViewTopConstraint" destination="YEy-iW-cmg" id="uIv-r0-M9G"/>
                         <outlet property="inviteViewHeight" destination="RFN-dw-oXc" id="R8F-2q-FTp"/>
                         <outlet property="kokoid" destination="2Nu-sV-7Fr" id="ddY-6K-W0X"/>
+                        <outlet property="menuChatView" destination="Cwq-OM-5Ij" id="THO-Lb-C9r"/>
+                        <outlet property="menuFriendView" destination="B7S-OP-7J3" id="HhD-9z-sYA"/>
                         <outlet property="noFriendView" destination="DOY-yn-DwN" id="8XH-3t-Ih5"/>
                         <outlet property="searchBar" destination="oOh-vs-9qE" id="sDH-QY-9bV"/>
                         <outlet property="topView" destination="AxX-fk-qoR" id="crJ-Ol-hi1"/>

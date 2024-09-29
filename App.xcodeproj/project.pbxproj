@@ -24,6 +24,7 @@
 		817695882CA7DDDE001F9071 /* TableViewCellFriend.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817695862CA7DDDE001F9071 /* TableViewCellFriend.xib */; };
 		8181FC4A2CA6E2A30086E2E6 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181FC492CA6E2980086E2E6 /* FriendViewController.swift */; };
 		81D6CB452CA9323900543A0F /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6CB442CA9321700543A0F /* MainController.swift */; };
+		81D6CB472CA99C9800543A0F /* BadgeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6CB462CA99C8400543A0F /* BadgeUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		817695862CA7DDDE001F9071 /* TableViewCellFriend.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellFriend.xib; sourceTree = "<group>"; };
 		8181FC492CA6E2980086E2E6 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		81D6CB442CA9321700543A0F /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		81D6CB462CA99C8400543A0F /* BadgeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		0470477C2CA562220039443D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				81D6CB462CA99C8400543A0F /* BadgeUIView.swift */,
 				81D6CB442CA9321700543A0F /* MainController.swift */,
 				8181FC492CA6E2980086E2E6 /* FriendViewController.swift */,
 				047047502CA557B80039443D /* ViewController.swift */,
@@ -323,6 +326,7 @@
 				0470474D2CA557B80039443D /* AppDelegate.swift in Sources */,
 				8176957C2CA7CFB9001F9071 /* DataFriendViewModel.swift in Sources */,
 				047047802CA562500039443D /* DataUser.swift in Sources */,
+				81D6CB472CA99C9800543A0F /* BadgeUIView.swift in Sources */,
 				8181FC4A2CA6E2A30086E2E6 /* FriendViewController.swift in Sources */,
 				0470474F2CA557B80039443D /* SceneDelegate.swift in Sources */,
 				81D6CB452CA9323900543A0F /* MainController.swift in Sources */,
