@@ -32,6 +32,7 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var haveFriendView: UIView!
     @IBOutlet weak var friendUnderLineView: UIView!
     @IBOutlet weak var chatUnderLineView: UIView!
+    var myMode:Int = 0
     
     var dataUserViewModel = DataUserViewModel()
     var dataFriendViewModel = DataFriendViewModel()
@@ -92,6 +93,7 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
         }
         dataFriendViewModel.hideLoading = {
             DispatchQueue.main.async {
+                //在request很快的情況下，可能導致loading動畫只出現0.幾秒，使用者畫面會閃一下，故改成至少出現2秒的loading
                 sleep(2)
                 self.activityIndicator.stopAnimating()
             }
@@ -101,7 +103,8 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
                 self.inviteViewSetData()
             }
         }
-        dataFriendViewModel.getData()
+        myMode = ((self.parent) as? MainController)?.myMode ?? 0
+        dataFriendViewModel.getData(myMode:myMode)
     }
     //朋友按鈕事件
     func menuFriendClickEvent(){
@@ -151,11 +154,13 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
     }
     //friend tableview 下拉更新
     @objc func refreshTableView(){
+        if (myMode == 2){myMode = 3}
+        else if(myMode == 3){myMode = 2}
         //init searchbar
         searchBar.text = ""
         self.searchBar.endEditing(true)
         //getdata and refresh
-        dataFriendViewModel.getData()
+        dataFriendViewModel.getData(myMode: myMode)
         refreshControl.endRefreshing()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
