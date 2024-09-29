@@ -9,6 +9,17 @@ import UIKit
 
 class FriendViewController: UIViewController, UISearchBarDelegate {
 
+    //邀請介面－暫定
+    @IBOutlet weak var topViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var bottomViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var inviteViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var topViewName: UILabel!
+    @IBOutlet weak var bottomViewName: UILabel!
+    
+    var isExpanded = false
     //loading
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -83,6 +94,11 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
             DispatchQueue.main.async {
                 sleep(2)
                 self.activityIndicator.stopAnimating()
+            }
+        }
+        dataFriendViewModel.reloadInviteView = {
+            DispatchQueue.main.async{
+                self.inviteViewSetData()
             }
         }
         dataFriendViewModel.getData()
@@ -161,6 +177,51 @@ class FriendViewController: UIViewController, UISearchBarDelegate {
         menuChatClickEvent()
     }
     
+    @IBAction func topViewExpandClick(_ sender: Any) {
+        inviteViewExpandEvent()
+    }
+    @IBAction func bottomViewExpandClick(_ sender: Any) {
+        inviteViewExpandEvent()
+    }
+    @IBAction func topViewConfirm(_ sender: Any) {
+        
+    }
+    //邀請清單展開縮放動畫
+    func inviteViewExpandEvent(){
+        var count = dataFriendViewModel.numberOfInviteCells
+        if(count < 2){ return }
+        UIView.animate(withDuration: 0.5){
+            if self.isExpanded{
+                self.inviteViewHeight.constant = 100
+                self.bottomViewWidth.constant = -30
+            } else {
+                self.inviteViewHeight.constant = 170
+                self.bottomViewWidth.constant = 0
+            }
+            self.view.layoutIfNeeded()
+            self.isExpanded.toggle()
+        }
+    }
+    //inviteView setData
+    func inviteViewSetData(){
+        let count = dataFriendViewModel.numberOfInviteCells
+        if(count == 0){
+            inviteViewHeight.constant = 0
+            bottomView.isHidden = true
+            topView.isHidden = true
+        } else if(count == 1){
+            inviteViewHeight.constant = 100
+            topViewName.text = dataFriendViewModel.getInviteCellViewModel(index: 0).name
+            bottomView.isHidden = true
+            topView.isHidden = false
+        } else if(count == 2){
+            inviteViewHeight.constant = 100
+            topViewName.text = dataFriendViewModel.getInviteCellViewModel(index: 0).name
+            bottomViewName.text = dataFriendViewModel.getInviteCellViewModel(index: 1).name
+            bottomView.isHidden = false
+            topView.isHidden = false
+        }
+    }
 }
 extension FriendViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

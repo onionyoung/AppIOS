@@ -11,6 +11,8 @@ class DataFriendViewModel{
     var datas: [DataFriend] = [DataFriend]()
     var searchData: [DataFriend] = [DataFriend]()
     var confirmDatas: [DataFriend] = [DataFriend]()
+    
+    var reloadInviteView: (() -> ())?
     var reloadTableView: (() ->())?
     var showError: (() -> ())?
     var showLoading: (() -> ())?
@@ -19,7 +21,7 @@ class DataFriendViewModel{
     //從API取得資料
     func getData(){
         
-        let url = URL(string:"https://dimanyen.github.io/friend1.json")
+        let url = URL(string:"https://dimanyen.github.io/friend4.json")
         
         showLoading?()
         datas = [DataFriend]()
@@ -70,10 +72,10 @@ class DataFriendViewModel{
                         
                         //寫入資料
                         let item = DataFriend(name: name,
-                                   status: status,
-                                   isTop: isTop,
-                                   fid: fid,
-                                   updateDate: updateDate!)
+                                              status: status,
+                                              isTop: isTop,
+                                              fid: fid,
+                                              updateDate: updateDate!)
                         
                         if (status == 0){
                             self.confirmDatas.append(item)
@@ -82,7 +84,7 @@ class DataFriendViewModel{
                         }
                     }
                     self.searchData(keyword:"")
-                    
+                    self.reloadInviteView?()
                 }
                 catch{
                 }
@@ -92,7 +94,8 @@ class DataFriendViewModel{
             
         }
     }
-
+    
+    //朋友清單 reload
     func searchData(keyword:String){
         searchData = [DataFriend]()
         if(keyword.isEmpty){
@@ -106,14 +109,19 @@ class DataFriendViewModel{
         }
         self.reloadTableView?()
     }
-    
     var numberOfCells: Int{
         return searchData.count
     }
-    
     func getCellViewModel(at indexPath: IndexPath)-> DataFriend{
         return searchData[indexPath.row]
     }
     
+    //邀請列表
+    var numberOfInviteCells: Int{
+        return confirmDatas.count
+    }
+    func getInviteCellViewModel(index: Int)-> DataFriend{
+        return confirmDatas[index]
+    }
     
 }
